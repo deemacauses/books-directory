@@ -13,14 +13,23 @@ const bookSchema = new mongoose.Schema({
     required: [true, "A book must have an ISBN"],
     unique: true
   },
-  authors: [
-    {type: String, required: [true, "A book must belong to an author"]}
-  ],
+  author: {
+    type: mongoose.Schema.ObjectId,
+    ref: "User"
+  },
   pages: {
     type: Number,
     required: [true, "A book must have a pages number"]
   },
   publishedAt: {type: Date, default: Date.now()}
+})
+
+bookSchema.pre(/^find/, function callback(next) {
+  this.populate({
+    path: "author",
+    select: "name"
+  })
+  next()
 })
 
 const Book = mongoose.model("Book", bookSchema)

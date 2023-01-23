@@ -15,6 +15,6 @@ This API provides a simple way to create, read, update, and delete book entries 
 
 4. Run `npm run start` to start the server.
 
-To test the API,you can use the following [Postman collection link](https://documenter.getpostman.com/view/22139068/2s8ZDYX1jM).
+To test the API, you can use the following [Postman collection link](https://documenter.getpostman.com/view/22139068/2s8ZDYX1jM).
 
 > Thank you for visiting my repository 😁

@@ -6,6 +6,7 @@ const xss = require("xss-clean")
 const rateLimit = require("express-rate-limit")
 
 const bookRouter = require("./routers/bookRoutes")
+const userRouter = require("./routers/userRoutes")
 const AppError = require("./utils/appError")
 
 // Limit Requests From Same API
@@ -24,6 +25,7 @@ app.use(mongoSanitize()) // Data Sanitization Against NoSQL Query Injection
 app.use(xss()) // Data Sanitization Against Cross-Site-Scripting
 app.use("/api", rateLimiter) // Limit Request From Same API
 app.use("/api/v1/books", bookRouter)
+app.use("/api/v1/users", userRouter)
 
 app.all("*", (request, response, next) => {
   next(new AppError(`Can't find ${request.originalUrl} on this server!`, 404))

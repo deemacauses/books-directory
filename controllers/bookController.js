@@ -21,6 +21,7 @@ exports.getBook = catchAsyncFunction(async (request, response, next) => {
 })
 
 exports.createBook = catchAsyncFunction(async (request, response, next) => {
+  if (!request.body.author) request.body.author = request.user.id
   const book = await Book.create(request.body)
 
   response.status(201).json({status: "success", data: {book}})
